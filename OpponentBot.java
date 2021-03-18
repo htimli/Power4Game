@@ -1,9 +1,9 @@
 
-public class OpponentBot extends RandomBot {
-	Puissance4 _p;
+public class OpponentBot extends BotDecorateur {
+	private Puissance4 _p;
 	
-	public OpponentBot(Puissance4 p) {
-		super(p);
+	public OpponentBot(P4Player deco ,Puissance4 p) {
+		super(deco,p);
 		_p = p;
 	}
 	public int play() {

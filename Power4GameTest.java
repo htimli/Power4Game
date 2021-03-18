@@ -12,7 +12,7 @@ class Power4GameTest {
 	void setUp() throws Exception {
 		puissance4 = new Puissance4Impl();
 		P4Player p1 = new HumanBot(puissance4);
-		P4Player p2 = new DirectWinBot(puissance4);
+		P4Player p2 = new DirectWinBot(new RandomBot(puissance4) ,puissance4);
 		puissance4.init(p1, p2);
 		Power4Game.run(puissance4);
 	}
