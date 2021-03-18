@@ -1,8 +1,9 @@
 
-public class DirectWinBot extends OpponentBot {
-	Puissance4 _p;
-	public DirectWinBot(Puissance4 p) {
-		super(p);
+public class DirectWinBot extends BotDecorateur {
+	private Puissance4 _p;
+	
+	public DirectWinBot(P4Player deco ,Puissance4 p) {
+		super(deco,p);
 		_p = p;
 	}
 	public int play() {
