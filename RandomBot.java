@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class RandomBot implements P4Player {
 	Puissance4 _p;
+	
 	public RandomBot(Puissance4 p) {
 		_p = p;
 	}

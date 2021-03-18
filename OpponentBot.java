@@ -1,6 +1,7 @@
 
 public class OpponentBot extends RandomBot {
 	Puissance4 _p;
+	
 	public OpponentBot(Puissance4 p) {
 		super(p);
 		_p = p;

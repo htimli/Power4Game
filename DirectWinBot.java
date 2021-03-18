@@ -1,5 +1,5 @@
 
-class DirectWinBot extends OpponentBot {
+public class DirectWinBot extends OpponentBot {
 	Puissance4 _p;
 	public DirectWinBot(Puissance4 p) {
 		super(p);

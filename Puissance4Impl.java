@@ -4,6 +4,7 @@ public class Puissance4Impl implements Puissance4 {
 	private boolean _finished;
 	private int _freePlaces;
 	private P4Player _player, _p1, _p2;
+	
 	public P4Player currentPlayer() {
 		return _player;
 	}
@@ -25,7 +26,7 @@ public class Puissance4Impl implements Puissance4 {
 		_finished = false;
 		_freePlaces = WIDTH * HEIGHT;
 	}
-	
+
 	public String toString() {
 		StringBuffer str = new StringBuffer();
 		str.append("***************\n");
@@ -49,7 +50,7 @@ public class Puissance4Impl implements Puissance4 {
 	public boolean end() {
 		return _finished;
 	}
-	
+
 	public boolean isFree(int col) {
 		if(_freePlaces <= 0) return false;
 		if (col <0 || col >= WIDTH) return false;
@@ -61,14 +62,14 @@ public class Puissance4Impl implements Puissance4 {
 		return true;
 
 	}
-	
+
 	private P4Player switchPlayer() {
 		if (_player == _p1)
 			return _p2;
 		else 
 			return _p1;
 	}
-	
+
 	public void play(int col) {
 		if (end()) return;
 		--_freePlaces;
