@@ -1,3 +1,4 @@
+package game;
 
 import java.util.Random;
 
@@ -6,6 +7,9 @@ public class RandomBot implements P4Player {
 	
 	public RandomBot(Puissance4 p) {
 		_p = p;
+	}
+	public Puissance4 getPuissance4() {
+		return _p;
 	}
 	public int play() {
 		Random r = new Random();

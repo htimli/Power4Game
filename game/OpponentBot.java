@@ -1,4 +1,4 @@
-
+package game;
 public class OpponentBot extends BotDecorateur {
 	private Puissance4 _p;
 	
@@ -8,10 +8,10 @@ public class OpponentBot extends BotDecorateur {
 	}
 	public int play() {
 		P4Player _opponent;
-		if (_p.player1() != this)
-			_opponent = _p.player1();
+		if (_p.getPlayer1() != this)
+			_opponent = _p.getPlayer1();
 		else
-			_opponent = _p.player2();
+			_opponent = _p.getPlayer2();
 		for (int i=0; i < Puissance4.WIDTH; ++i) { 
 			if (_p.checkWin(i, _opponent))
 				return i;

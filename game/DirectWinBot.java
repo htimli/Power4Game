@@ -1,4 +1,4 @@
-
+package game;
 public class DirectWinBot extends BotDecorateur {
 	private Puissance4 _p;
 	

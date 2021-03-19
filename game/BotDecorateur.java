@@ -1,4 +1,4 @@
-
+package game;
 public abstract class BotDecorateur implements P4Player {
 	private P4Player _deco;
 	private Puissance4 _p;

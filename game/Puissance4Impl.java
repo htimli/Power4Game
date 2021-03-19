@@ -1,3 +1,4 @@
+package game;
 
 import java.util.HashMap;
 
@@ -10,33 +11,33 @@ public class Puissance4Impl implements Puissance4 {
 	//private static Puissance4Impl _instance = null;
 	private static HashMap<Long,Puissance4Impl> _instance = new HashMap<Long,Puissance4Impl>();
 	
-	public P4Player currentPlayer() {
-		return _player;
-	}
-
-	public P4Player player1() {
-		return _p1;
-	}
-	public P4Player player2() {
-		return _p2;
-	}
+	
 	
 	private Puissance4Impl() {}
-	
-	
+
 	public static Puissance4Impl instance() {
 		/*
 		if(_instance == null)
 			_instance = new Puissance4Impl();
 		return _instance; 		
 		*/
-
 		Thread currentThread = Thread.currentThread();
 		long id_thread = currentThread.getId();
 		
 		if(_instance.get(id_thread) == null)
 			_instance.put(id_thread,new Puissance4Impl());
 		return _instance.get(id_thread);
+	}
+	
+	public P4Player currentPlayer() {
+		return _player;
+	}
+
+	public P4Player getPlayer1() {
+		return _p1;
+	}
+	public P4Player getPlayer2() {
+		return _p2;
 	}
 	
 	public void init(P4Player p1, P4Player p2) {

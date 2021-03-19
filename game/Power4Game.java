@@ -1,9 +1,4 @@
-import game.DirectWinBot;
-import game.HumanBot;
-import game.P4Player;
-import game.Puissance4;
-import game.Puissance4Impl;
-import game.RandomBot;
+package game;
 
 public class Power4Game {
 
