@@ -1,10 +1,14 @@
 
+import java.util.HashMap;
+
 public class Puissance4Impl implements Puissance4 {
 	private P4Player [][] _tab;
 	private boolean _finished;
 	private int _freePlaces;
 	private P4Player _player, _p1, _p2;
-	private static Puissance4Impl _instance = null;
+	
+	//private static Puissance4Impl _instance = null;
+	private static HashMap<Long,Puissance4Impl> _instance = new HashMap<Long,Puissance4Impl>();
 	
 	public P4Player currentPlayer() {
 		return _player;
@@ -21,9 +25,18 @@ public class Puissance4Impl implements Puissance4 {
 	
 	
 	public static Puissance4Impl instance() {
+		/*
 		if(_instance == null)
 			_instance = new Puissance4Impl();
 		return _instance; 		
+		*/
+
+		Thread currentThread = Thread.currentThread();
+		long id_thread = currentThread.getId();
+		
+		if(_instance.get(id_thread) == null)
+			_instance.put(id_thread,new Puissance4Impl());
+		return _instance.get(id_thread);
 	}
 	
 	public void init(P4Player p1, P4Player p2) {
