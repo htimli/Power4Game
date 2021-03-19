@@ -10,7 +10,7 @@ public class Power4Game {
 		System.out.println(p);
 	}
 	public static void main(String argv[]) {
-		Puissance4 p = new Puissance4Impl();
+		Puissance4 p = Puissance4Impl.instance();
 		P4Player p1 = new HumanBot(p);
 		P4Player p2 = new DirectWinBot(new RandomBot(p) ,p);
 		p.init(p1, p2);

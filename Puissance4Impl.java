@@ -4,6 +4,7 @@ public class Puissance4Impl implements Puissance4 {
 	private boolean _finished;
 	private int _freePlaces;
 	private P4Player _player, _p1, _p2;
+	private static Puissance4Impl _instance = null;
 	
 	public P4Player currentPlayer() {
 		return _player;
@@ -15,6 +16,16 @@ public class Puissance4Impl implements Puissance4 {
 	public P4Player player2() {
 		return _p2;
 	}
+	
+	private Puissance4Impl() {}
+	
+	
+	public static Puissance4Impl instance() {
+		if(_instance == null)
+			_instance = new Puissance4Impl();
+		return _instance; 		
+	}
+	
 	public void init(P4Player p1, P4Player p2) {
 		_p1 = p1;
 		_p2 = p2;
