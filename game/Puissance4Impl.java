@@ -39,6 +39,11 @@ public class Puissance4Impl implements Puissance4 {
 	public P4Player getPlayer2() {
 		return _p2;
 	}
+	/*
+	public P4Player [][] getTab(){
+		return this._tab;
+	}
+	*/
 	
 	public void init(P4Player p1, P4Player p2) {
 		_p1 = p1;
@@ -70,6 +75,25 @@ public class Puissance4Impl implements Puissance4 {
 		}
 		str.append("***************\n");
 		return str.toString();
+	}
+	public void buildPuissance4Impl( Puissance4Builder builder) {
+				
+		builder.createNewPuissance4Builder();
+		builder.beginPlateau();
+		for (int i=WIDTH-1; i >=0; --i) {
+			builder.beginCase();
+			for (int j=0; j < HEIGHT; ++j) {
+				if (_tab[i][j] == _p1)
+					builder.putPlayer1();
+				if (_tab[i][j] == null)
+					builder.putEmptyCase();
+				if (_tab[i][j] == _p2)
+					builder.putPlayer2();
+				builder.beginCase();
+			}
+			builder.endLine();
+		}
+		builder.endPlateau();
 	}
 
 	public boolean end() {

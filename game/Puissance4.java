@@ -12,4 +12,8 @@ public interface Puissance4 {
 	public String toString();
 	public boolean isFree(int col);
 	public boolean checkWin(int col, P4Player player);
+	
+	//to remove 
+	public void buildPuissance4Impl( Puissance4Builder builder);
+	
 }
