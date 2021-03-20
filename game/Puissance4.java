@@ -13,6 +13,8 @@ public interface Puissance4 {
 	public boolean isFree(int col);
 	public boolean checkWin(int col, P4Player player);
 	
+	public P4Player getTab(int i , int j);
+	
 	//to remove 
 	public void buildPuissance4Impl( Puissance4Builder builder);
 	

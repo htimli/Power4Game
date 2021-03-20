@@ -24,16 +24,31 @@ class Power4GameTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-
+	
+	
 	@Test
 	void testLaunch() {
 		assertNotNull(puissance4);
 	}
 	
 	@Test
+	void testPlay(int col) {	
+		int i=0;
+		while(i < Puissance4.HEIGHT &&  puissance4.getTab(i,col) != null)
+			++i;
+		assertNotNull(puissance4.getTab(i,col));
+		assertEquals(puissance4.getTab(i,col),puissance4.currentPlayer());
+		
+		
+		
+	}
+	
+	/*
+	@Test
 	void testMain() {
 		//fail("Not yet implemented");
 	}
+	*/
 	
 
 }

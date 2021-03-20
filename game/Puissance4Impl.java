@@ -39,11 +39,11 @@ public class Puissance4Impl implements Puissance4 {
 	public P4Player getPlayer2() {
 		return _p2;
 	}
-	/*
-	public P4Player [][] getTab(){
-		return this._tab;
+	
+	public P4Player getTab( int i ,int j){
+		return this._tab[i][j];
 	}
-	*/
+	
 	
 	public void init(P4Player p1, P4Player p2) {
 		_p1 = p1;
