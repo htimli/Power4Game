@@ -5,7 +5,7 @@ import game.Puissance4;
 
 class HumanPlayer implements BotAbstractFactory {
 	@Override
-	public P4Player create(Puissance4 puissance4) {
+	public P4Player createPlayer(Puissance4 puissance4) {
 		return new HumanBot(puissance4);
 	}
 

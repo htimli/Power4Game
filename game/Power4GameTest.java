@@ -20,15 +20,13 @@ class Power4GameTest {
 		puissance4.init(p1, p2);
 		
 		int i=0;
-		while(i < Puissance4.HEIGHT &&  puissance4.getTab(i,col) != null)
+		while(i < Puissance4.HEIGHT &&  puissance4.getPlayerInCase(i,col) != null)
 			++i;
 		line=i;
 		
 		col = puissance4.getPlayer1().play();
 		puissance4.play(col);
-		
-		
-		
+			
 
 	}
 
@@ -43,9 +41,8 @@ class Power4GameTest {
 	}
 	
 	@Test
-	void testPlay() {	
-		
-		assertEquals(puissance4.getPlayer1(),puissance4.getTab(line,col));
+	void testPlay() {			
+		assertEquals(puissance4.getPlayer1(),puissance4.getPlayerInCase(line,col));
 		
 		
 		

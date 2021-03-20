@@ -1,20 +1,23 @@
-import game.DirectWinBot;
-import game.HumanBot;
-import game.P4Player;
-import game.Puissance4;
-import game.Puissance4Impl;
-import game.RandomBot;
+
+
+import game.*;
+import ui.*;
+
+
 
 public class Power4Game {
 
-	public static void run(Puissance4 p) {
-		while(!p.end()) {
-			System.out.println(p);
-			System.out.println("Player " + p.currentPlayer() +  " turn");
-			p.play(p.currentPlayer().play());
+	public static void run(Puissance4 p, Puissance4Builder builder) {
+		while(!p.isFinished()) {
+			//System.out.println(p);
+			p.buildPuissance4(builder);
+			System.out.println(((HTMLBuilder)builder).getResult());			
+			System.out.println("Player " + p.getCurrentPlayer() +  " turn");
+			p.play(p.getCurrentPlayer().play());
 		}		
 		System.out.println(p);
 	}
+	
 	public static void main(String argv[]) {
 		Puissance4 p = Puissance4Impl.instance();
 		
@@ -25,7 +28,9 @@ public class Power4Game {
 		P4Player p1 = new HumanBot(p);
 		P4Player p2 = new DirectWinBot(new RandomBot(p) ,p);
 		p.init(p1, p2);
-		run(p);
+		Puissance4Builder builder = new HTMLBuilder();
+		
+		run(p,builder);
 	}
 
 }

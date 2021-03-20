@@ -6,7 +6,7 @@ import game.RandomBot;
 
 class Level1Player implements BotAbstractFactory {
 	@Override
-	public P4Player create(Puissance4 puissance4) {
+	public P4Player createPlayer(Puissance4 puissance4) {
 		return new OpponentBot(new RandomBot(puissance4), puissance4);
 	}
 	

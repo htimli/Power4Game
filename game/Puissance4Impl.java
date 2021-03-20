@@ -3,6 +3,9 @@ package game;
 import java.util.HashMap;
 
 public class Puissance4Impl implements Puissance4 {
+	
+	
+	private final int PUISS_3 = 3 ;
 	private P4Player [][] _tab;
 	private boolean _finished;
 	private int _freePlaces;
@@ -29,9 +32,6 @@ public class Puissance4Impl implements Puissance4 {
 		return _instance.get(id_thread);
 	}
 	
-	public P4Player currentPlayer() {
-		return _player;
-	}
 
 	public P4Player getPlayer1() {
 		return _p1;
@@ -40,7 +40,7 @@ public class Puissance4Impl implements Puissance4 {
 		return _p2;
 	}
 	
-	public P4Player getTab( int i ,int j){
+	public P4Player getPlayerInCase( int i ,int j){
 		return this._tab[i][j];
 	}
 	
@@ -76,12 +76,12 @@ public class Puissance4Impl implements Puissance4 {
 		str.append("***************\n");
 		return str.toString();
 	}
-	public void buildPuissance4Impl( Puissance4Builder builder) {
+	public void buildPuissance4( Puissance4Builder builder) {
 				
 		builder.createNewPuissance4Builder();
 		builder.beginPlateau();
 		for (int i=WIDTH-1; i >=0; --i) {
-			builder.beginLine(); //&
+			builder.beginLine();
 			builder.beginCase();
 			for (int j=0; j < HEIGHT; ++j) {
 				if (_tab[i][j] == _p1)
@@ -90,7 +90,7 @@ public class Puissance4Impl implements Puissance4 {
 					builder.putEmptyCase();
 				if (_tab[i][j] == _p2)
 					builder.putPlayer2();
-				builder.endCase(); //&
+				builder.endCase(); 
 				if(j != HEIGHT-1)
 					builder.beginCase();
 			}
@@ -100,7 +100,7 @@ public class Puissance4Impl implements Puissance4 {
 		builder.finish();
 	}
 
-	public boolean end() {
+	public boolean isFinished() {
 		return _finished;
 	}
 
@@ -124,7 +124,7 @@ public class Puissance4Impl implements Puissance4 {
 	}
 
 	public void play(int col) {
-		if (end()) return;
+		if (isFinished()) return;
 		--_freePlaces;
 		int i=0;
 		while(i < HEIGHT && _tab[i][col] != null)
@@ -157,10 +157,10 @@ public class Puissance4Impl implements Puissance4 {
 		for (int x = i + 1, y = col - 1; x < WIDTH && y >= 0     && _tab[x][y] == p; ++x, --y) ++d2;
 		for (int x = i - 1, y = col + 1; x >= 0    && y < HEIGHT && _tab[x][y] == p; --x, ++y) ++d2;
 		//System.out.println("res " +l + " " + h + " " + d1 +  " " +d2);
-		if (l >3)  return true;
-		if (h >3)  return true;
-		if (d1 >3) return true;
-		if (d2 >3) return true;
+		if (l >PUISS_3)  return true;
+		if (h >PUISS_3)  return true;
+		if (d1 >PUISS_3) return true;
+		if (d2 >PUISS_3) return true;
 		return  false;
 	}
 
@@ -173,5 +173,10 @@ public class Puissance4Impl implements Puissance4 {
 		boolean result = testwin(i, col);
 		_tab[i][col] = null;
 		return result;
+	}
+
+	@Override
+	public P4Player getCurrentPlayer() {
+		return this._player;
 	}
 }

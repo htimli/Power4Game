@@ -53,8 +53,7 @@ public class HTMLBuilder implements Puissance4Builder{
 
 	@Override
 	public void putPlayer2() {
-		_str += "o";
-		
+		_str += "o";	
 	}
 
 	@Override
