@@ -10,6 +10,7 @@ import ui.TextBuilder;
 class Power4GameTest {
 	
 	Puissance4 puissance4 ;
+	int col ,line;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -17,8 +18,18 @@ class Power4GameTest {
 		P4Player p1 = new HumanBot(puissance4);
 		P4Player p2 = new DirectWinBot(new RandomBot(puissance4) ,puissance4);
 		puissance4.init(p1, p2);
-		Puissance4Builder builder = new TextBuilder();
-		Power4Game.run(puissance4 , builder);
+		
+		int i=0;
+		while(i < Puissance4.HEIGHT &&  puissance4.getTab(i,col) != null)
+			++i;
+		line=i;
+		
+		col = puissance4.getPlayer1().play();
+		puissance4.play(col);
+		
+		
+		
+
 	}
 
 	@AfterEach
@@ -32,12 +43,10 @@ class Power4GameTest {
 	}
 	
 	@Test
-	void testPlay(int col) {	
-		int i=0;
-		while(i < Puissance4.HEIGHT &&  puissance4.getTab(i,col) != null)
-			++i;
-		assertNotNull(puissance4.getTab(i,col));
-		assertEquals(puissance4.getTab(i,col),puissance4.currentPlayer());
+	void testPlay() {	
+		
+		assertEquals(puissance4.getPlayer1(),puissance4.getTab(line,col));
+		
 		
 		
 		
