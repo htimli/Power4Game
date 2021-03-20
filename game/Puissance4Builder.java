@@ -14,8 +14,10 @@ public interface Puissance4Builder {
 	public void putPlayer2();
 	public void putEmptyCase();
 	
+	public void beginLine();
 	public void endLine();
 	
+	public void finish();
 	
 	
 	

@@ -5,6 +5,9 @@ import game.Puissance4Builder;
 public class TextBuilder  implements Puissance4Builder {
 	StringBuilder str ;
 
+	public TextBuilder() {
+		
+	}
 	public void beginPlateau() {
 		str.append("***************\n");
 	}
@@ -36,6 +39,16 @@ public class TextBuilder  implements Puissance4Builder {
 	
 	public String getResult() {
 		return str.toString();
+	}
+	@Override
+	public void beginLine() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void finish() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

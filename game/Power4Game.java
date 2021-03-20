@@ -1,5 +1,6 @@
 package game;
 
+import ui.HTMLBuilder;
 import ui.TextBuilder;
 
 public class Power4Game {

@@ -81,6 +81,7 @@ public class Puissance4Impl implements Puissance4 {
 		builder.createNewPuissance4Builder();
 		builder.beginPlateau();
 		for (int i=WIDTH-1; i >=0; --i) {
+			builder.beginLine(); //&
 			builder.beginCase();
 			for (int j=0; j < HEIGHT; ++j) {
 				if (_tab[i][j] == _p1)
@@ -89,11 +90,14 @@ public class Puissance4Impl implements Puissance4 {
 					builder.putEmptyCase();
 				if (_tab[i][j] == _p2)
 					builder.putPlayer2();
-				builder.beginCase();
+				builder.endCase(); //&
+				if(j != HEIGHT-1)
+					builder.beginCase();
 			}
 			builder.endLine();
 		}
 		builder.endPlateau();
+		builder.finish();
 	}
 
 	public boolean end() {
