@@ -133,35 +133,51 @@ public class Puissance4Impl implements Puissance4 {
 			//error
 		}
 		_tab[i][col] = _player;
-		if (testwin(i, col)) {
+		if (testWin(i, col)) {
 			System.out.println("player " + _player + " win");
 			_finished = true;
 			return;
 		}
 		_player = switchPlayer();
 	}
-
-	public boolean testwin(int i, int col) {
-		int l = 1 , h = 1, d1 = 1, d2 = 1;
+	
+	public boolean testVertical (int i, int col, P4Player p){
+		int vCount = 1;
+		for (int x = i + 1; x < WIDTH && _tab[x][col] == p; ++x) ++vCount;
+		for (int x = i - 1; x >=  0   && _tab[x][col] == p; --x) ++vCount;
+		return vCount > PUISS_3;
+		}
+	
+	public boolean testHorizontal(int i, int col, P4Player p){
+		int hCount = 1;
+		for (int x = col + 1; x < WIDTH && _tab[i][x] == p; ++x) ++hCount;
+		for (int x = col - 1; x >=  0   && _tab[i][x] == p; --x) ++hCount;
+		return hCount > PUISS_3;
+		}
+	
+	public boolean testDiagTopLeft(int i, int col, P4Player p){           //diagonal  \
+		int diagCount = 1;
+		for (int x = i + 1, y = col + 1; x < WIDTH && y < HEIGHT && _tab[x][y] == p; ++x, ++y) ++diagCount;
+		for (int x = i - 1, y = col - 1; x >= 0 && y >= 0 && _tab[x][y] == p; --x, --y) ++diagCount;
+		return diagCount > PUISS_3;
+		
+	}
+	
+	public boolean testDiagTopRight(int i, int col, P4Player p) {       //diagonal  /
+		int diagCount = 1;
+		for (int x = i + 1, y = col - 1; x < WIDTH && y >= 0     && _tab[x][y] == p; ++x, --y) ++diagCount;
+		for (int x = i - 1, y = col + 1; x >= 0    && y < HEIGHT && _tab[x][y] == p; --x, ++y) ++diagCount;
+		return diagCount > PUISS_3;
+	}
+	
+	public boolean testWin(int i, int col) {
 		P4Player p = _tab[i][col];
-
-		for (int x = i + 1; x < WIDTH && _tab[x][col] == p; ++x) ++l;
-		for (int x = i - 1; x >=  0   && _tab[x][col] == p; --x) ++l;
-
-		for (int x = col + 1; x < WIDTH && _tab[i][x] == p; ++x) ++h;
-		for (int x = col - 1; x >=  0   && _tab[i][x] == p; --x) ++h;
-
-		for (int x = i + 1, y = col + 1; x < WIDTH && y < HEIGHT && _tab[x][y] == p; ++x, ++y) ++d1;
-		for (int x = i - 1, y = col - 1; x >= 0 && y >= 0 && _tab[x][y] == p; --x, --y) ++d1;
-
-		for (int x = i + 1, y = col - 1; x < WIDTH && y >= 0     && _tab[x][y] == p; ++x, --y) ++d2;
-		for (int x = i - 1, y = col + 1; x >= 0    && y < HEIGHT && _tab[x][y] == p; --x, ++y) ++d2;
 		//System.out.println("res " +l + " " + h + " " + d1 +  " " +d2);
-		if (l >PUISS_3)  return true;
-		if (h >PUISS_3)  return true;
-		if (d1 >PUISS_3) return true;
-		if (d2 >PUISS_3) return true;
-		return  false;
+		
+		if(testDiagTopRight(i, col, p) || testDiagTopLeft(i, col, p) ||
+		 testHorizontal(i, col, p) || testVertical(i, col, p))  return true;
+		return false;
+		
 	}
 
 	public boolean checkWin(int col, P4Player player) {
@@ -170,7 +186,7 @@ public class Puissance4Impl implements Puissance4 {
 		while(i < HEIGHT && _tab[i][col] != null)
 			++i;
 		_tab[i][col] = player;
-		boolean result = testwin(i, col);
+		boolean result = testWin(i, col);
 		_tab[i][col] = null;
 		return result;
 	}

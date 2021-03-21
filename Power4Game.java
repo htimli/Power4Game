@@ -11,7 +11,7 @@ public class Power4Game {
 		while(!p.isFinished()) {
 			//System.out.println(p);
 			p.buildPuissance4(builder);
-			System.out.println(((HTMLBuilder)builder).getResult());			
+			System.out.println(((TextBuilder)builder).getResult());			
 			System.out.println("Player " + p.getCurrentPlayer() +  " turn");
 			p.play(p.getCurrentPlayer().play());
 		}		
@@ -26,9 +26,10 @@ public class Power4Game {
 		P4Player p3 = factory.create(p);
 		*/
 		P4Player p1 = new HumanBot(p);
-		P4Player p2 = new DirectWinBot(new RandomBot(p) ,p);
+		//P4Player p2 = new DirectWinBot(new RandomBot(p) ,p);
+		P4Player p2 = new HumanBot(p);
 		p.init(p1, p2);
-		Puissance4Builder builder = new HTMLBuilder();
+		Puissance4Builder builder = new TextBuilder();
 		
 		run(p,builder);
 	}
